@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <head>
+<link type="text/css" rel="stylesheet" href="style.css" />
+<script src="d3.v2.min.js"></script>
+<script src="jquery.min.js"></script>
+<body>
+    <div id="page">
+        <div id="top">
+            <!-- <div class="tooltipContainer" id="mapTooltip" style="position:relative"> -->
+                <div id="legend">
+                    <div class="legendTitle">
+                        <h1>Legend</h1>
+                        <h2>Data Availability</h2>
+                    </div>
+                    <div class="legendIconContainer Greens">
+                        <div class="legendIcon publicYes"></div>
+                        <div class="legendIcon publicUnclear"></div>
+                        <div class="legendIcon publicNo"></div>
+                    </div>
+                    <div class="legendLabelContainer">
+                        <div class="legendLabel">Data is public</div>
+                        <div class="legendLabel">Unclear</div>
+                        <div class="legendLabel">Data witheld</div>
+                    </div>
+                    <!--
+                    <div class="legendTitle">
+                        <h2>Public Data Availability</h2>
+                    </div>
+                    <div class="legendIconContainer">
+                        <div class="legendIcon" id="naPatternKey"></div>
+                        <div class="legendIcon" id="somePatternKey"></div>
+                        <div class="legendIcon" id="allPatternKey"></div>
+                    </div>
+                    <div class="legendLabelContainer">
+                        <div class="legendLabel">Data Witheld</div>
+                        <div class="legendLabel">Policy Unclear</div>
+                        <div class="legendLabel">Data Available</div>
+                    </div>
+                    -->
+                </div>
+                <div id="mapContainer"></div>
+        </div>
+        <div id="bottom">
+            <div id="caption"></div>
+        </div>
+    </div>
+    <script src="map.js"></script>
+</body>
+</html>

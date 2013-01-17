@@ -1,0 +1,239 @@
+
+ /* BASIC PAGE DIVISION */
+
+
+      #page {
+        font-family:sans-serif;
+        width: 600px;
+        margin: 20px auto;
+      }
+
+      #top {
+        position:relative;
+        width: 100%;
+        height: 350px;
+        overflow:hidden;
+      }
+
+      #bottom {
+        position: static;
+        width: 100%;
+        background-color:#e5e5e5;
+        /*
+        min-height: 680px;
+        background: #f4f4f4;
+        */
+        }
+
+
+.body {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+/* legend */
+
+#legend {
+    position: absolute;
+    display:inline-block;
+    z-index:999;
+    max-width: 100px;
+    font-size: 0.7em;
+    background-color: rgba(255,255,255,0.8);
+    padding: 5px;
+}
+
+
+.legendTitle {
+    display: block;
+    clear:both;
+}
+
+.legendTitle h1 {
+    font-size: 1.2em;
+    text-decoration: underline;
+    margin-top: 0px;
+}
+
+.legendTitle h2 {
+    font-size: 1em;
+    margin-bottom: 0.25em;
+}
+
+.legendIconContainer {
+    float:left;
+    margin: 0px;
+    padding: 2px,5px;
+    margin-left: 2px;
+}
+
+.legendIcon {
+    height: 10px;
+    width:20px;
+    margin-bottom:1px;
+    border:solid;
+    border-color:black;
+    border-width:1px;
+}
+
+#naPatternKey {
+    background-image: url('naPattern_key.png')
+}
+
+#somePatternKey {
+    background-image: url('somePattern_key.png')
+}
+
+#allPatternKey {
+    background-color: white;
+}
+
+.legendLabelContainer {
+    float: right;
+    padding: 0px;
+}
+
+.legendLabel {
+}
+
+
+/* MAP */
+
+#mapContainer {
+    position:absolute;
+}
+
+.overlay {
+  pointer-events: none;
+  }
+
+#states {
+  stroke: #9C9C9C;
+  stroke-width: 1px;
+}
+
+#states path:hover {
+    fill:steelblue;
+}
+
+#states .active {
+  /*fill: steelblue;*/
+}
+
+#caption {
+  padding: 10px;
+  max-height: 300px;
+  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  font-weight:400;
+  font-stretch:normal;
+  margin-top:10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow:auto;
+}
+
+#caption h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+#caption p {
+    margin:0px;
+    font-size:0.80em;
+}
+
+#caption ul {
+    margin-top: 7px;
+    font-size: 0.9em;
+    margin-left: 0px;
+    padding-left: 20px;
+}
+
+#caption li {
+    padding-bottom: 5px;
+    font-size: 1em;
+}
+
+#caption li ul {
+    padding-top: 5px;
+}
+
+.stateLabel {
+  fill:black;
+  stroke:none;
+  font-size: .7em;
+  font-weight: bold;
+  font-family:  "Arial", sans-serif;
+  pointer-events: none;
+}
+
+    /* COLORTIME JUNCTION WOO WOO */
+
+.publicYes {
+    fill:green;
+    background-color: green;
+}
+
+.publicUnclear {
+    fill:yellow;
+    background-color: yellow;
+}
+
+.publicNo {
+    fill:red;
+    background-color: red;
+}
+
+/*.Greens .q0-6 {
+    fill: #CFDDA0;
+    background-color: #CFDDA0; 
+}
+.Greens .q1-6 {
+    fill: #ACC86B;
+    background-color: #ACC86B; 
+}
+.Greens .q2-6 {
+    fill: #8DB548;
+    background-color: #8DB548; 
+}
+.Greens .q3-6 {
+    fill: #6A9D2C;
+    background-color: #6A9D2C; 
+}
+.Greens .q4-6 {
+    fill: #4A7F1B;
+    background-color: #4A7F1B; 
+}
+.Greens .q5-6 {
+    fill: #305E13;
+    background-color: #305E13; 
+}*/
+
+.focus {
+}
+
+
+
+
+.stateDetail h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.stateDetail p {
+  text-align: right;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 0.8em;
+}
+
