@@ -170,7 +170,7 @@ function clickZoom(d) {
   var x = 0,
       y = 0,
       k = 1
-      f = "8px";
+      //f = "8px";
 
   d3.selectAll('.stateLabel').style("visibility","hidden");
  
@@ -230,7 +230,7 @@ function clickZoom(d) {
       .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
       .style("stroke-width", 1.5 / k + "px");
 
-  d3.selectAll('.stateLabel').style("font-size",f);
+  d3.selectAll('.stateLabel').style("font-size");
   d3.selectAll('.stateLabel').style("visibility","visible");
   
   /*
