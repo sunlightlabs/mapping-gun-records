@@ -8,6 +8,9 @@ To run this locally:
 * open a terminal
 * cd to the directory containing index.html
 * run the following command:
+
         python -m SimpleHTTPServer 8888
+
 * open your browser and navigate to:
+
         http://localhost:8888
