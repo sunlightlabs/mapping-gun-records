@@ -23,6 +23,7 @@
         min-height: 680px;
         background: #f4f4f4;
         */
+        color: #58595B;
         }
 
 
@@ -70,17 +71,28 @@
 .legendIconContainer {
     float:left;
     margin: 0px;
-    padding: 2px,5px;
-    margin-left: 2px;
+    padding: 2px 5px 2px 0;
+    margin-left: 0;
+    list-style-type: none;
 }
 
 .legendIcon {
-    height: 10px;
-    width:20px;
-    margin-bottom:1px;
+    height: 15px;
+    width: 15px;
+    margin-bottom: 4px;
     border:solid;
     border-color:#7e7a79;
     border-width:1px;
+    display: inline-block;
+    margin-right: 5px;
+    float: left;
+    clear: both;
+}
+.legendLabel {
+	width: 85px;
+	margin-left: 10px;
+	height: 18px;
+	padding-top: 3px;
 }
 
 #naPatternKey {
@@ -100,8 +112,7 @@
     padding: 0px;
 }
 
-.legendLabel {
-}
+
 
 
 /* MAP */
@@ -124,8 +135,7 @@
 }
 
 #states .active {
-  stroke: #9C9C9C;
-  stroke-width: 1px;
+    opacity: .7;
 }
 
 #caption {
@@ -139,7 +149,6 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
   overflow:auto;
-  color: #7e7a79;
 }
 
 #caption h1 {
@@ -147,6 +156,8 @@
     margin-bottom: 0px;
     padding-bottom: 0px;
     font-family: Georgia, times, serif;
+    font-size: 26px;
+    color: #414042;
 }
 
 #caption p {
@@ -171,7 +182,7 @@
 }
 
 .stateLabel {
-  fill:black;
+  fill:#3d3a39;
   stroke:none;
   font-size: 8px;
   font-weight: bold;
