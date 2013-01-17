@@ -170,7 +170,7 @@ function clickZoom(d) {
   var x = 0,
       y = 0,
       k = 1
-      f = ".7em";
+      f = "8px";
 
   d3.selectAll('.stateLabel').style("visibility","hidden");
  
@@ -181,7 +181,7 @@ function clickZoom(d) {
     x = -centroid[0];
     y = -centroid[1] - 20;
     k = 4;
-    f = ".4em";
+    //f = ".4em";
     centered = d;
     var caphtml = function () { 
         h = getStateDetails(d);
