@@ -95,10 +95,12 @@ var g = svg.append("g")
     .attr("id", "states")
     .classed("Greens",true);
 
+/*
 var g2 = svg.append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
   .append("g")
     .attr("id", "statesOverlay");
+    */
 
 d3.json("states.json", function(json) {
   g.selectAll("path")
@@ -113,38 +115,39 @@ d3.json("states.json", function(json) {
                                      } else {
                                         return false;
                                      }})
-      /*.on("mouseover",function(d) { if ($.inArray(d.properties.name,focused_states) > 0){
+       .on("click", clickZoom); //function(d) { if ($.inArray(d.properties.name,focused_states)>0) {click(d)}})
+       /*.on("mouseover",function(d) { if ($.inArray(d.properties.name,focused_states) > 0){
                                         console.log("moused over "+d.properties.name);
                                         d3.select(this).attr("fill","orange");
                                      } else {
                                         return false;
-                                     }})*/
-      .on("click", clickZoom); //unction(d) { if ($.inArray(d.properties.name,focused_states)>0) {
-                          //               click(d)}})
-      /*.on("mouseover",showTooltip)
+                                     }})
+      .on("mouseover",showTooltip)
       .on("mouseout",hideTooltip);*/
 
+   /*   
    g2.selectAll("path")
       .data(json.features)
     .enter().append("path")
       .attr("d",path)
       .classed("overlay",true)
       .attr("fill","none")
-      /*.attr("fill",function(d) {    var public_status = states_data[d.id]['public'];
+      .attr("fill",function(d) {    var public_status = states_data[d.id]['public'];
                                     if (public_status == 'Yes') {
                                        return 'none';
                                     } else if (public_status == 'No'){
                                        return 'url(#naPattern)';
                                     } else {
                                        return 'url(#somePattern)';
-                                    }})*/
+                                    }})
       .attr("stroke",function(d) { if ($.inArray(d.properties.name,focused_states) > 0){
                                         return "black";
                                      } else {
                                         return "none";
                                      }});
+    */
 
-   g2.selectAll("text")
+   g.selectAll("text")
 	.data(json.features)
 	.enter()
 	.append("svg:text")
@@ -166,16 +169,19 @@ function clickZoom(d) {
 
   var x = 0,
       y = 0,
-      k = 1;
+      k = 1
+      f = ".7em";
 
+  d3.selectAll('.stateLabel').style("visibility","hidden");
  
   if (d && centered !== d) {
-    hideTooltip(d);
+    //hideTooltip(d);
     zoomed = true;
     var centroid = path.centroid(d);
     x = -centroid[0];
     y = -centroid[1] - 20;
     k = 4;
+    f = ".4em";
     centered = d;
     var caphtml = function () { 
         h = getStateDetails(d);
@@ -186,28 +192,33 @@ function clickZoom(d) {
         }
         return h}
     $('#caption').html(caphtml);
-    g2.style("visibility","hidden");
-    d3.selectAll('.stateLabel').style("visibility","hidden");
-    d3.selectAll('.stateLabel').style("font-size",".4em");
+    //g2.style("visibility","hidden");
+    //d3.selectAll('.stateLabel').style("font-size",".4em");
+    /*
     setTimeout(function(){
       g2.style("visibility","visible");
       d3.selectAll('.stateLabel').style("visibility","visible");
     }, 1000);
+    */
   } else {
     zoomed = false;
     centered = null;
     $('#caption').html(intro_caption);
+    /*
     if (d) {
         g2.style("visibility","hidden");
         d3.selectAll('.stateLabel').style("visibility","hidden");
     }
-    d3.selectAll('.stateLabel').style("font-size",".7em");
+    */
+    //d3.selectAll('.stateLabel').style("font-size",".7em");
+    /*
     if (d) {
         setTimeout(function(){
             g2.style("visibility","visible");
             d3.selectAll('.stateLabel').style("visibility","visible");
         }, 1000);
     }
+    */
   }
 
 
@@ -218,18 +229,22 @@ function clickZoom(d) {
       .duration(1000)
       .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
       .style("stroke-width", 1.5 / k + "px");
+
+  d3.selectAll('.stateLabel').style("font-size",f);
+  d3.selectAll('.stateLabel').style("visibility","visible");
   
+  /*
   g2.selectAll("path")
       .classed("active", centered && function(d) { return d === centered; });
 
   g2.attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
       .style("stroke-width", 1.5 / k + "px");
+  */
 
 }
 
 
-function showTooltip(d) {
-  //console.log(d);
+/*function showTooltip(d) {
   if (zoomed) {
       return true;
   } else {
@@ -246,11 +261,10 @@ function showTooltip(d) {
   }
 }
 
-
-
 function hideTooltip(d) {
     d3.select('#hovertip').remove();
 }
+*/
 
 function getStateDetails(d) {
     var stateName = d.properties.name;
