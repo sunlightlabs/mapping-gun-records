@@ -18,7 +18,7 @@
       #bottom {
         position: static;
         width: 100%;
-        background-color:#e5e5e5;
+        background-color:#f3f3f1;
         /*
         min-height: 680px;
         background: #f4f4f4;
@@ -79,7 +79,7 @@
     width:20px;
     margin-bottom:1px;
     border:solid;
-    border-color:black;
+    border-color:#7e7a79;
     border-width:1px;
 }
 
@@ -120,11 +120,12 @@
 }
 
 #states path:hover {
-    fill:steelblue;
+    opacity: .8;
 }
 
 #states .active {
-  /*fill: steelblue;*/
+  stroke: #9C9C9C;
+  stroke-width: 1px;
 }
 
 #caption {
@@ -138,12 +139,14 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
   overflow:auto;
+  color: #7e7a79;
 }
 
 #caption h1 {
     margin-top: 0px;
     margin-bottom: 0px;
     padding-bottom: 0px;
+    font-family: Georgia, times, serif;
 }
 
 #caption p {
@@ -170,7 +173,7 @@
 .stateLabel {
   fill:black;
   stroke:none;
-  font-size: .7em;
+  font-size: 8px;
   font-weight: bold;
   font-family:  "Arial", sans-serif;
   pointer-events: none;
@@ -179,18 +182,18 @@
     /* COLORTIME JUNCTION WOO WOO */
 
 .publicYes {
-    fill:green;
-    background-color: green;
+    fill:#00837e;
+    background-color: #00837e;
 }
 
 .publicUnclear {
-    fill:yellow;
-    background-color: yellow;
+    fill:#e9e103;
+    background-color: #e9e103;
 }
 
 .publicNo {
-    fill:red;
-    background-color: red;
+    fill:#e86231;
+    background-color: #e86231;
 }
 
 /*.Greens .q0-6 {

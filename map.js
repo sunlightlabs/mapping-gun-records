@@ -141,7 +141,7 @@ d3.json("states.json", function(json) {
                                        return 'url(#somePattern)';
                                     }})
       .attr("stroke",function(d) { if ($.inArray(d.properties.name,focused_states) > 0){
-                                        return "black";
+                                        return "#ffffff";
                                      } else {
                                         return "none";
                                      }});
