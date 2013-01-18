@@ -1,7 +1,7 @@
 var states_info;
 var focused_states;
 
-var intro_caption = "<h1>Rootin' Tootin' Contributin'</h1><p><span class='tip'>Click on any state on the left to learn more about the availability of gun ownership data in that state</span></p><p>You'll notice that many of these states are lacking full information about the availability of their data. Please contact the Sunlight Foundation if you can offer more insight into the facts around any state's laws.</p>"
+var intro_caption = "<h1>Rootin' Tootin' Contributin'</h1><p><span class='tip'>Click on any state on the left to learn more about the availability of gun ownership data in that state</span></p><p>This map illustrates the availability -- or lack -- of gun ownership data in the 50 states. It is based on information from the federal Bureau of Alcohol, Tobacco, Firearms and Explosives ( ATF), the National Rifle Association's Institute for Legislative Action, the Reporters Committee for the Freedom of the Press. We welcome any additional information about gun laws in your area. You can email the Sunlight Foundation here: contact@sunlightfoundation.com.</p>"
 
 $('#caption').html(intro_caption)
 
@@ -272,7 +272,7 @@ function getStateDetails(d) {
     var dataStatus = states_data[d.id]['public'];
     //var html_string = '<div class="stateDetail">';
     var html_string = '<h1>'+stateName+'</h1><dl>';
-    html_string += '<dt>Contributions, 1990-pres:</dt><dd>'+amountSpent+'</d>';
+    //html_string += '<dt>Contributions, 1990-pres:</dt><dd>'+amountSpent+'</d>';
     html_string += '<dt>Publicly available data:</dt><dd>'+dataStatus+'</dd></dl>';
     //html_string += '</div>';
     return html_string;
