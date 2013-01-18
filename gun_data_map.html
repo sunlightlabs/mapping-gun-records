@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <head>
+<link type="text/css" rel="stylesheet" href="http://assets.sunlightlabs.com.s3.amazonaws.com/gun_info_map/style.css" />
+<script src="http://assets.sunlightlabs.com.s3.amazonaws.com/gun_info_map/d3.v2.min.js"></script>
+<script src="http://assets.sunlightlabs.com.s3.amazonaws.com/gun_info_map/jquery.min.js"></script>
+    </head>
+<body>
+    <div id="page">
+        <div id="top">
+                <div id="legend">
+                    <div class="legendTitle">
+                        <h2>Data Availability</h2>
+                    </div>
+                    <dl class="legendIconContainer Greens">
+                        <dt class="legendIcon publicYes"></dt>
+                        <dd class="legendLabel">Data is public</dd>
+                        <!--dt class="legendIcon publicUnclear"></dt>
+                        <dd class="legendLabel">Unclear</dd-->
+                        <dt class="legendIcon publicNo"></dt>
+                        <dd class="legendLabel">Data witheld</dd>
+                    </dl>
+                </div>
+                <div id="mapContainer"></div>
+        </div>
+        <div id="bottom">
+            <div id="caption"></div>
+        </div>
+    </div>
+	<script>
+	var states_info;
+        var states_data;
+	var focused_states;
+ 
+	var intro_caption = "<h1>Status of Gun Records in All 50 States</h1><p><span class='tip'>Click on any state above to learn more about the availability of gun ownership data in that state</span></p><p>This map illustrates the availability -- or lack -- of gun ownership data in the 50 states. It is based on information from the federal Bureau of Alcohol, Tobacco, Firearms and Explosives ( ATF), the National Rifle Association's Institute for Legislative Action, the Reporters Committee for the Freedom of the Press, as well as Sunlight's reporting. We welcome any additional information about gun laws in your area. You can email the Sunlight Foundation here: <a href=mailto:contact@sunlightfoundation.com>contact@sunlightfoundation.com</a></p>"
+
+	var default_caption = "<br><p>At this time, Sunlight has not been able to gather information about the public availability of gun registration data in this state. If you have information you'd like to share, please contact us at contact@sunlightfoundation.com</p>"
+
+	$('#caption').html(intro_caption)
+
+	$.getJSON('http://assets.sunlightlabs.com.s3.amazonaws.com/gun_info_map/states_info.json',function(data){
+		states_info = data;
+		focused_states = Object.keys(states_info);	
+	})
+
+	$.getJSON('http://assets.sunlightlabs.com.s3.amazonaws.com/gun_info_map/state_data.json',function(data){
+		states_data = data;
+	})
+
+	var zoomed = false;
+
+	var width = 580,
+	    height = 500,
+	    centered;
+
+	var ordinal = d3.scale.ordinal().domain(["Yes","Unclear","No"]).range(["publicYes","publicUnclear","publicNo"]);
+
+	var projection = d3.geo.albersUsa()
+	    .scale(width+(0.14*width))
+	    .translate([((0.14*width)/2), -80]);
+
+	var path = d3.geo.path()
+	    .projection(projection);
+
+	var svg = d3.select("#mapContainer").append("svg")
+	    .attr("width", width)
+	    .attr("height", height);
+
+
+	svg.append("rect")
+	    .attr("class", "background")
+	    .attr("width", width)
+	    .attr("height", height);
+
+	var g = svg.append("g")
+	    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+	  .append("g")
+	    .attr("id", "states")
+	    .classed("Greens",true);
+
+	d3.json("http://assets.sunlightlabs.com.s3.amazonaws.com/gun_info_map/states.json", function(json) {
+	  g.selectAll("path")
+	      .data(json.features)
+	    .enter().append("path")
+	      .attr("d", path)
+	      .attr("class",function(d){ console.log(d.id); 
+		  return ordinal(states_data[d.id]['public']);})
+	      .classed("focus",function(d) { if ($.inArray(d.properties.name,focused_states) > 0){
+		                                return true;
+		                             } else {
+		                                return false;
+		                             }})
+	       .on("click", clickZoom); 
+
+	   g.selectAll("text")
+		.data(json.features)
+		.enter()
+		.append("svg:text")
+		.classed("stateLabel",true)
+		.text(function(d){return states_data[d.id]['abbr'];})
+		.attr("x",function(d){return path.centroid(d)[0];})
+		.attr("y",function(d){return path.centroid(d)[1];})
+		.attr("dx","-0.5em")
+		.attr("text_anchor","middle");
+	});
+
+	d3.selectAll(".focus").append('pattern').attr('xlink:href','somepattern.gif');
+
+
+	function clickZoom(d) {
+	  console.log(d);
+
+	  var x = 0,
+	      y = 0,
+	      k = 1
+
+	  d3.selectAll('.stateLabel').style("visibility","hidden");
+	 
+	  if (d && centered !== d) {
+	    zoomed = true;
+	    var centroid = path.centroid(d);
+	    x = -centroid[0];
+	    y = -centroid[1] - 20;
+	    k = 4;
+	    centered = d;
+	    var caphtml = function () { 
+		h = getStateDetails(d);
+		if ($.inArray(d.properties.name,focused_states)>0) {
+		    h += states_info[d.properties.name]
+		} else {
+		    h += default_caption
+		}
+		return h}
+	    $('#caption').html(caphtml);
+	  } else {
+	    zoomed = false;
+	    centered = null;
+	    $('#caption').html(intro_caption);
+	  }
+
+
+	  g.selectAll("path")
+	      .classed("active", centered && function(d) { return d === centered; });
+
+	  g.transition()
+	      .duration(1000)
+	      .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
+	      .style("stroke-width", 1.5 / k + "px");
+
+	  d3.selectAll('.stateLabel').style("font-size");
+	  d3.selectAll('.stateLabel').style("visibility","visible");
+
+	}
+
+	function getStateDetails(d) {
+	    var stateName = d.properties.name;
+	    var amountSpent = formatCurrency(states_data[d.id]['money']);
+	    var dataStatus = states_data[d.id]['public'];
+	    var html_string = '<h1>'+stateName+'</h1><dl>';
+	    html_string += '<dt>Publicly available data:</dt><dd>'+dataStatus+'</dd></dl>';
+	    return html_string;
+	}
+
+	function formatCurrency(num) {
+	  num = num.toString().replace(/\$|\,/g, '');
+	  if (isNaN(num)) num = "0";
+	  sign = (num == (num = Math.abs(num)));
+	  num = Math.floor(num * 100 + 0.50000000001);
+	  num = Math.floor(num / 100).toString();
+	  for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+	    num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+	  return (((sign) ? '' : '-') + '$' + num );
+	}
+</script>
+</body>
+</html>
