@@ -1,7 +1,7 @@
 var states_info;
 var focused_states;
 
-var intro_caption = "<h1>Rootin' Tootin' Contributin'</h1><p><span class='tip'>Click on any state above to learn more about the availability of gun ownership data in that state</span></p><p>This map illustrates the availability -- or lack -- of gun ownership data in the 50 states. It is based on information from the federal Bureau of Alcohol, Tobacco, Firearms and Explosives ( ATF), the National Rifle Association's Institute for Legislative Action, the Reporters Committee for the Freedom of the Press. We welcome any additional information about gun laws in your area. You can email the Sunlight Foundation here: contact@sunlightfoundation.com.</p>"
+var intro_caption = "<h1>Rootin' Tootin' Contributin'</h1><p><span class='tip'>Click on any state above to learn more about the availability of gun ownership data in that state</span></p><p>This map illustrates the availability -- or lack -- of gun ownership data in the 50 states. It is based on information from the federal Bureau of Alcohol, Tobacco, Firearms and Explosives ( ATF), the National Rifle Association's Institute for Legislative Action, the Reporters Committee for the Freedom of the Press, as well as Sunlight's reporting. We welcome any additional information about gun laws in your area. You can email the Sunlight Foundation here: contact@sunlightfoundation.com</p>"
 
 $('#caption').html(intro_caption)
 
