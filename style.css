@@ -221,8 +221,8 @@
     /* COLORTIME JUNCTION WOO WOO */
 
 .publicYes {
-    fill:#00837e;
-    background-color: #00837e;
+    fill: rgb(153, 165, 20);
+    background-color: rgb(153, 165, 20);
 }
 
 .publicUnclear {
@@ -231,8 +231,8 @@
 }
 
 .publicNo {
-    fill:#e86231;
-    background-color: #e86231;
+    fill: rgb(232, 173, 49);
+    background-color: rgb(232, 173, 49);
 }
 
 /*.Greens .q0-6 {
