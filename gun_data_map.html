@@ -15,11 +15,11 @@
                     </div>
                     <dl class="legendIconContainer Greens">
                         <dt class="legendIcon publicYes"></dt>
-                        <dd class="legendLabel">Data is public</dd>
+                        <dd class="legendLabel">Data public</dd>
                         <!--dt class="legendIcon publicUnclear"></dt>
                         <dd class="legendLabel">Unclear</dd-->
                         <dt class="legendIcon publicNo"></dt>
-                        <dd class="legendLabel">Data witheld</dd>
+                        <dd class="legendLabel">Data not public</dd>
                     </dl>
                 </div>
                 <div id="mapContainer"></div>
@@ -39,16 +39,20 @@
 
 	$('#caption').html(intro_caption)
 
-	$.getJSON('http://assets.sunlightlabs.com.s3.amazonaws.com/gun_info_map/states_info.json',function(data){
+	var get_states_info = function(){
+	    return $.getJSON('states_info.json',function(data){
 		states_info = data;
-		focused_states = Object.keys(states_info);	
-	})
+		focused_states = Object.keys(states_info);
+	    });
+	};
 
-	$.getJSON('http://assets.sunlightlabs.com.s3.amazonaws.com/gun_info_map/state_data.json',function(data){
+	var get_states_data = function(){
+	    return $.getJSON('state_data.json',function(data){
 		states_data = data;
-	})
+	    });
+	};
 
-	$(document).ready( function() {
+	get_states_info().then(get_states_data).then(function() {
 
 	var zoomed = false;
 
@@ -128,11 +132,7 @@
 	    centered = d;
 	    var caphtml = function () { 
 		h = getStateDetails(d);
-		if ($.inArray(d.properties.name,focused_states)>0) {
-		    h += states_info[d.properties.name]
-		} else {
-		    h += default_caption
-		}
+		h += states_info[d.properties.name]
 		return h}
 	    $('#caption').html(caphtml);
 	  } else {
