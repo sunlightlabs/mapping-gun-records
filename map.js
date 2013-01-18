@@ -14,6 +14,8 @@ $.getJSON('state_data.json',function(data){
     states_data = data;
 })
 
+$(document).ready( function() {
+
 var zoomed = false;
 
 var width = 580,
@@ -288,4 +290,4 @@ function formatCurrency(num) {
     num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
   return (((sign) ? '' : '-') + '$' + num );
 }
-
+});
