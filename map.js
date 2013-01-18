@@ -5,16 +5,20 @@ var intro_caption = "<h1>Status of Gun Records in All 50 States</h1><p><span cla
 
 $('#caption').html(intro_caption)
 
-$.getJSON('states_info.json',function(data){
-    states_info = data;
-    focused_states = Object.keys(states_info);
-})
+var get_states_info = function(){
+    return $.getJSON('states_info.json',function(data){
+        states_info = data;
+        focused_states = Object.keys(states_info);
+    });
+};
 
-$.getJSON('state_data.json',function(data){
-    states_data = data;
-})
+var get_states_data = function(){
+    return $.getJSON('state_data.json',function(data){
+        states_data = data;
+    });
+};
 
-$(document).ready( function() {
+get_states_info().then(get_states_data).then(function() {
 
 var zoomed = false;
 
@@ -287,3 +291,4 @@ function formatCurrency(num) {
   return (((sign) ? '' : '-') + '$' + num );
 }
 });
+
