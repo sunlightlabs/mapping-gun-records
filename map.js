@@ -16,7 +16,7 @@ $.getJSON('state_data.json',function(data){
 
 var zoomed = false;
 
-var width = 600,
+var width = 580,
     height = 500,
     centered;
 
