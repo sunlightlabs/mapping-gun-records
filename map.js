@@ -187,11 +187,7 @@ function clickZoom(d) {
     centered = d;
     var caphtml = function () { 
         h = getStateDetails(d);
-        if ($.inArray(d.properties.name,focused_states)>0) {
-            h += states_info[d.properties.name]
-        } else {
-            h += default_caption
-        }
+        h += states_info[d.properties.name]
         return h}
     $('#caption').html(caphtml);
     //g2.style("visibility","hidden");
