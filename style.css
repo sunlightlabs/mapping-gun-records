@@ -1,6 +1,9 @@
 
  /* BASIC PAGE DIVISION */
 
+      body {
+          margin: 0px;
+      }
 
       #page {
         font-family:sans-serif;
