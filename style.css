@@ -126,7 +126,7 @@
   }
 
 #states {
-  stroke: #9C9C9C;
+  stroke: #ffffff;
   stroke-width: 1px;
 }
 
@@ -140,7 +140,7 @@
 
 #caption {
   padding: 10px;
-  max-height: 300px;
+  height: 300px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
   font-weight:400;
   font-stretch:normal;
@@ -158,11 +158,29 @@
     font-family: Georgia, times, serif;
     font-size: 26px;
     color: #414042;
+    float: left;
 }
+#caption .tip{
 
+}
+#caption dl{
+	float: right;
+	font-size: 14px;
+	margin: 0;
+}
+#caption dt{
+	float: left;
+	clear: both;
+	display: block;
+	font-weight: bold;
+}
+#caption dd{
+	float: left;
+	margin-left: 5px;
+}
 #caption p {
-    margin:0px;
     font-size:0.80em;
+    clear: both;
 }
 
 #caption ul {
@@ -170,6 +188,12 @@
     font-size: 0.9em;
     margin-left: 0px;
     padding-left: 20px;
+    clear: both;
+}
+#caption>ul{
+    border-top: 1px dashed #9f9f9f;
+    padding-top: 10px;
+    margin-top: 50px;
 }
 
 #caption li {
